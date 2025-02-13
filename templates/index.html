@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <h2 class="chat-header">Welcome to Our Enrollment Chatbot</h2>
+        <p class="chat-description">Ask me about enrollment procedures, requirements, or any other school-related inquiries!</p>
+        <div class="chat-box">
+            <ul class="chat-log" id="chat-log">
+            </ul>
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById("user-input");
+            const message = userInput.value.trim();
+
+            if (message === "") return;
+
+            // Display user's message
+            const chatLog = document.getElementById("chat-log");
+            const userMessage = document.createElement("li");
+            userMessage.classList.add("message", "user-message");
+            userMessage.innerText = message;
+            chatLog.appendChild(userMessage);
+            userInput.value = "";
+
+            // Scroll to the latest message
+            chatLog.scrollTop = chatLog.scrollHeight;
+
+            // Send message to the server
+            fetch("/chatbot", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display bot's response
+                const botMessage = document.createElement("li");
+                botMessage.classList.add("message", "bot-response");
+                botMessage.innerText = data.response;
+                chatLog.appendChild(botMessage);
+
+                // Scroll to the latest message
+                chatLog.scrollTop = chatLog.scrollHeight;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+
+        // Allow sending message by pressing Enter
+        document.getElementById("user-input").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

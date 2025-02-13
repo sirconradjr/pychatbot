@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-container {
+    width: 400px;
+    max-height: 600px;
+    overflow-y: auto;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chat-box {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.chat-log {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.message {
+    display: block;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 20px;
+    line-height: 1.4;
+    max-width: 70%;
+    word-wrap: break-word;
+    clear: both;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.user-message {
+    background-color: #ff6600;
+    color: white;
+    text-align: right;
+    border-bottom-right-radius: 0;
+    float: right;
+}
+
+/* .user-message::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    border-width: 10px 0 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ff6600;
+} */
+
+.bot-response {
+    background-color: #f1f1f1;
+    color: #333;
+    text-align: left;
+    border-bottom-left-radius: 0;
+    float: left;
+}
+
+/* .bot-response::after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    border-width: 10px 10px 10px 0;
+    border-style: solid;
+    border-color: transparent #f1f1f1 transparent transparent;
+} */
+
+.input-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-container input:focus {
+    border-color: #ff6600;
+}
+
+.input-container button {
+    padding: 10px 15px;
+    background: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background 0.3s;
+}
+
+.input-container button:hover {
+    background: #e55a00;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff6600;
+    border-radius: 10px;
+}
+
+.chat-header {
+    text-align: center;
+    color: #ff6600;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.chat-description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
